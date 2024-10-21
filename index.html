@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>วันครบรอบที่รัก</title>
+    <style>
+        body {
+            font-family: 'Kanit', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center; 
+            background: url('https://media.discordapp.net/attachments/1297065013969817631/1297620312505974784/IMG20240625180759.jpg?ex=67169697&is=67154517&hm=af7fd678d88ea9f7bd3fe267f3bb7265911ec4a0a20d5cc07bcbb3bcd3f2c20e&=&format=webp&width=503&height=671') no-repeat center center fixed; 
+            background-size: 30%;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            font-size: 4em;
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 1.5em;
+            color: #fff;
+        }
+
+        .heart {
+            font-size: 5em;
+            color: #ff66cc;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+
+        #videoBackground {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            filter: blur(3px);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        .message {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+            padding: 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 30px;
+            max-width: 600px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .date {
+            font-weight: bold;
+            color: #d63384;
+        }
+
+        /* การ์ดที่ซ่อนรูป */
+        .card {
+            background-color: #0a0404;
+            color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 20px auto;
+            max-width: 300px;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+            display: inline-block;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .image-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .image-popup img {
+            max-width: 80%;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(255, 255, 255, 0.3);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <video autoplay muted loop id="videoBackground">
+        <source src="https://www.videvo.net/videvo_files/converted/2017_06/preview/170601_02_LoveHeart_1080p_001.mp486315.webm" type="video/webm">
+        Your browser does not support HTML5 video.
+    </video>
+
+    <div class="overlay"></div>
+
+    <h1>สุขสันต์วันครบรอบ 1.2y</h1>
+    <p class="heart">💖</p>
+
+    <div class="message">
+        <p>ในวันนี้ <span class="date">25 ตุลาคม 2024</span> เป็นวันครบรอบ 14 เดือนของเรา</p>
+        <p>ขอให้ความรักและความสุขของหนูกับกิจอยู่ตลอดไปเลยน่าค่าาา ❤️</p>
+    </div>
+
+    <!-- การ์ดที่เปิดรูปได้หลายใบ -->
+    <div class="card" onclick="openRandomImagePopup()">
+        <p>สุ่มรูป</p>
+    </div>
+
+    <div class="image-popup" id="imagePopup">
+        <span class="close-btn" onclick="closeImagePopup()">&times;</span>
+        <img id="popupImage" src="" alt="รูปภาพวันครบรอบ">
+    </div>
+
+    <audio id="bgMusic" autoplay loop>
+        <source src="https://cdn.discordapp.com/attachments/1024855426170376252/1029273557047463996/Breeze.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        // รายการรูปภาพที่จะสุ่ม
+        const images = [
+            'https://cdn.pixabay.com/photo/2017/08/06/13/44/heart-2598304_1280.jpg',
+            'https://cdn.pixabay.com/photo/2018/02/14/10/18/heart-3153122_1280.jpg',
+            'https://cdn.pixabay.com/photo/2016/11/29/03/53/heart-1869306_1280.jpg'
+        ];
+
+        // ฟังก์ชันเปิดรูปแบบสุ่ม
+        function openRandomImagePopup() {
+            const randomIndex = Math.floor(Math.random() * images.length);
+            const randomImage = images[randomIndex];
+            document.getElementById("popupImage").src = randomImage;
+            document.getElementById("imagePopup").style.display = "flex";
+        }
+
+        // ฟังก์ชันปิดการ์ด
+        function closeImagePopup() {
+            document.getElementById("imagePopup").style.display = "none";
+        }
+
+        // เล่นเพลงเมื่อโหลดหน้าเว็บ
+        var audio = document.getElementById('bgMusic');
+        audio.volume = 0.7;
+    </script>
+
+</body>
+
+</html>
