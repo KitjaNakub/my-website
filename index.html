@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +13,7 @@
             height: 80vh;
             background-color: #f0f8ff;
             font-family: 'Arial', sans-serif;
+            padding: 0 10px;
         }
 
         #message {
@@ -24,7 +25,13 @@
 
         .heart {
             color: red;
-            font-size: 30px;
+            font-size: 50px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .heart:hover {
+            transform: scale(1.2);
         }
 
         .hidden {
@@ -34,13 +41,39 @@
         .image-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
+            justify-content: center;
+            gap: 10px;
         }
 
         img {
-            max-width: 300px;
+            max-width: 200px;
+            width: 200%;
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 600px) {
+            #message {
+                font-size: 18px;
+            }
+
+            img {
+                max-width: 200px;
+            }
+        }
+
+        /* Add CSS for the heart button */
+        #heartButton {
+            position: fixed;
+            bottom: 20px;
+            font-size: 50px;
+            color: #FF3399;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #heartButton.active {
+            transform: scale(5);
         }
     </style>
 </head>
@@ -54,11 +87,13 @@
     </div>
 
     <div id="imageContainer" class="image-container hidden">
-        <img src="https://media.discordapp.net/attachments/1297065013969817631/1297620666216087552/1725604885709.jpg?ex=671b342b&is=6719e2ab&hm=ebb6ba0940fb0824300ba0a7d959eda264be0aed538d42ffe3847a2f3ec91cb9&=&format=webp&width=377&height=670" alt="Surprise Image 1">
-        <img src="https://media.discordapp.net/attachments/1297065013969817631/1297620310631120966/received_485897990993514.jpg?ex=671b33d6&is=6719e256&hm=fb281c40de5a0a131ce111a0a7bc150d2039cd92d1a6249543518f7dc12b9d51&=&format=webp&width=377&height=671" alt="Surprise Image 2">
-        <img src="https://media.discordapp.net/attachments/1297065013969817631/1297620312791322634/IMG20240625175021.jpg?ex=671b33d7&is=6719e257&hm=670ff29a8985316e83f57be5cc66a89ec69a23a6ca2290fa67a974a0670b7fc0&=&format=webp&width=503&height=671" alt="Surprise Image 3">
-        <img src="https://media.discordapp.net/attachments/1297065013969817631/1297619846061621310/1639.jpg?ex=671b3367&is=6719e1e7&hm=5e331c576a97c78e26d9d9389b854e090a0d84e736f4707513e6f67761c794b0&=&format=webp&width=503&height=671" alt="Surprise Image 4">
+        <img src="https://media.discordapp.net/attachments/1297065013969817631/1297620312505974784/IMG20240625180759.jpg?ex=671b33d7&is=6719e257&hm=d3fcef3af055a3867818f7fea8982aa8aa3c0127ea84e20c1521e7deb14d7876&=&format=webp&width=503&height=671" alt="Surprise Image 1">
+        <img src="https://media.discordapp.net/attachments/1297065013969817631/1297619844190965850/Screenshot_2024-10-08-05-25-40-20_1c337646f29875672b5a61192b9010f9.jpg?ex=671b3367&is=6719e1e7&hm=059d69190972b02df47324fc50549357f6b105fcbe545ba828192ffcbd309607&=&format=webp&width=302&height=671" alt="Surprise Image 2">
+        <img src="https://media.discordapp.net/attachments/1297065013969817631/1297620311289630730/IMG20240627173340.jpg?ex=671b33d6&is=6719e256&hm=6849c25cc3e272b1fd413f8d2867b5bb6264105ebc0f286368815acf60d67614&=&format=webp&width=503&height=671" alt="Surprise Image 3">
     </div>
+
+    <!-- Add Heart Button -->
+    <div id="heartButton" class="heart">❤️</div>
 
     <script>
         function showMessage() {
@@ -70,7 +105,7 @@
             imageContainer.classList.remove("hidden");
 
             let i = 0;
-            const speed = 100; // ความเร็วในการแสดงผล
+            const speed = 100;
 
             function typeWriter() {
                 if (i < text.length) {
@@ -82,8 +117,16 @@
             typeWriter();
         }
 
-        // รอ 0.5 วินาทีแล้วค่อยแสดงข้อความและรูปภาพพร้อมกัน
         setTimeout(showMessage, 500);
+
+        // Add animation when heart button is clicked
+        const heartButton = document.getElementById('heartButton');
+        heartButton.addEventListener('click', () => {
+            heartButton.classList.add('active');  // Scale up
+            setTimeout(() => {
+                heartButton.classList.remove('active');  // Scale down after 300ms
+            }, 300);
+        });
     </script>
 
 </body>
