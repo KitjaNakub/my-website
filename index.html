@@ -1,194 +1,90 @@
 <!DOCTYPE html>
-<html lang="th">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>วันครบรอบที่รัก</title>
+    <title>Surprise for You Ruk Tee Ruk Tee sus Roey Kaaa</title>
     <style>
         body {
-            font-family: 'Kanit', sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center; 
-            background: url('https://media.discordapp.net/attachments/1297065013969817631/1297620312505974784/IMG20240625180759.jpg?ex=67169697&is=67154517&hm=af7fd678d88ea9f7bd3fe267f3bb7265911ec4a0a20d5cc07bcbb3bcd3f2c20e&=&format=webp&width=503&height=671') no-repeat center center fixed; 
-            background-size: 50%;
-            color: #fff;
-            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            background-color: #f0f8ff;
+            font-family: 'Arial', sans-serif;
         }
 
-        h1 {
-            font-size: 4em;
-            color: #fff;
-            margin-top: 20px;
-        }
-
-        p {
-            font-size: 1.5em;
-            color: #fff;
+        #message {
+            font-size: 24px;
+            color: #FF3399;
+            text-align: center;
+            margin-bottom: 20px;
         }
 
         .heart {
-            font-size: 5em;
-            color: #ff66cc;
-            animation: bounce 2s infinite;
+            color: red;
+            font-size: 30px;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-30px);
-            }
-            60% {
-                transform: translateY(-15px);
-            }
+        .hidden {
+            visibility: hidden;
         }
 
-        #videoBackground {
-            position: fixed;
-            top: 0;
-            left: 0;
-            min-width: 100%;
-            min-height: 100%;
-            z-index: -1;
-            filter: blur(3px);
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: -1;
-        }
-
-        .message {
-            background-color: rgba(255, 255, 255, 0.8);
-            color: #333;
-            padding: 20px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-top: 30px;
-            max-width: 600px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .date {
-            font-weight: bold;
-            color: #d63384;
-        }
-
-        /* การ์ดที่ซ่อนรูป */
-        .card {
-            background-color: #0a0404;
-            color: #fff;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            margin: 20px auto;
+        img {
             max-width: 300px;
-            cursor: pointer;
-            transition: transform 0.5s ease;
-            display: inline-block;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-        }
-
-        .image-popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            justify-content: center;
-            align-items: center;
-            z-index: 2;
-        }
-
-        .image-popup img {
-            max-width: 80%;
-            border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(255, 255, 255, 0.3);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 2em;
-            color: #fff;
-            cursor: pointer;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
-
 <body>
 
-
-
-    <div class="overlay"></div>
-
-    <h1>สุขสันต์วันครบรอบ 1.2y</h1>
-    <p class="heart">💖</p>
-
-    <div class="message">
-        <p>ในวันนี้ <span class="date">25 ตุลาคม 2024</span> เป็นวันครบรอบ 14 เดือนของเรา</p>
-        <p>ขอให้ความรักและความสุขของหนูกับกิจอยู่ตลอดไปเลยน่าค่าาา ❤️</p>
+    <div id="message" class="hidden">
+       สุขสันต์วันครบรอบ 1ปี2เดือนน่าค่าา
+       กิจไม่มีอะไรจะบอกเยอะ
+       แต่จะบอกว่ารักมากๆเยยยยย ไม่เคยรักใครเท่านี้มาก่อนเลยค่าา
+        I love you!
     </div>
 
-    <!-- การ์ดที่เปิดรูปได้หลายใบ -->
-    <div class="card" onclick="openRandomImagePopup()">
-        <p>จุ่ม</p>
+    <div id="imageContainer" class="image-container hidden">
+        <img src="https://media.discordapp.net/attachments/1297065013969817631/1297620666216087552/1725604885709.jpg?ex=671b342b&is=6719e2ab&hm=ebb6ba0940fb0824300ba0a7d959eda264be0aed538d42ffe3847a2f3ec91cb9&=&format=webp&width=377&height=670" alt="Surprise Image 1">
+        <img src="https://media.discordapp.net/attachments/1297065013969817631/1297620310631120966/received_485897990993514.jpg?ex=671b33d6&is=6719e256&hm=fb281c40de5a0a131ce111a0a7bc150d2039cd92d1a6249543518f7dc12b9d51&=&format=webp&width=377&height=671" alt="Surprise Image 2">
+        <img src="https://media.discordapp.net/attachments/1297065013969817631/1297620312791322634/IMG20240625175021.jpg?ex=671b33d7&is=6719e257&hm=670ff29a8985316e83f57be5cc66a89ec69a23a6ca2290fa67a974a0670b7fc0&=&format=webp&width=503&height=671" alt="Surprise Image 3">
+        <img src="https://media.discordapp.net/attachments/1297065013969817631/1297619846061621310/1639.jpg?ex=671b3367&is=6719e1e7&hm=5e331c576a97c78e26d9d9389b854e090a0d84e736f4707513e6f67761c794b0&=&format=webp&width=503&height=671" alt="Surprise Image 4">
     </div>
-
-    <div class="image-popup" id="imagePopup">
-        <span class="close-btn" onclick="closeImagePopup()">&times;</span>
-        <img id="popupImage" src="" alt="รูปภาพวันครบรอบ">
-    </div>
-
-    <audio id="bgMusic" autoplay loop>
-        <source src="https://cdn.discordapp.com/attachments/1024855426170376252/1029273557047463996/Breeze.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
 
     <script>
-        // รายการรูปภาพที่จะสุ่ม
-        const images = [
-            'https://media.discordapp.net/attachments/1297065013969817631/1297620666216087552/1725604885709.jpg?ex=67173fab&is=6715ee2b&hm=8ed22604b9f574802901367aadd28bcc60882a57373b9aaa783341324056b519&=&format=webp&width=377&height=670',
-            'https://media.discordapp.net/attachments/1297065013969817631/1297620380596441190/411840949_1307739133178860_8860445488548221966_n_1.jpg?ex=67173f67&is=6715ede7&hm=f2af96c1fb1644b6d99533489f4ea99659178dbdfdb61460402eb04c2c4ecf7f&=&format=webp&width=377&height=670',
-            'https://media.discordapp.net/attachments/1297065013969817631/1297620311289630730/IMG20240627173340.jpg?ex=67173f56&is=6715edd6&hm=80826addcf07d69c0bfbb469f067a0a2bb24995b0cf046e99f0ae9cdd080a134&=&format=webp&width=503&height=671',
-            'https://media.discordapp.net/attachments/1297065013969817631/1297620310379729047/received_785124810501483.jpg?ex=67173f56&is=6715edd6&hm=746972ec97d79f26a3e788e34b2642adf3cb3b38448db8a2153bccebfd33113e&=&format=webp&width=1190&height=671',
-            'https://media.discordapp.net/attachments/1297065013969817631/1297619845294063768/received_1160537108354758.jpg?ex=67173ee7&is=6715ed67&hm=70b1cc804b24313a7b9ee29c1ca9f0af29bc6dde9b324f7171f3ac0868b11d3f&=&format=webp',
-            'https://media.discordapp.net/attachments/1297065013969817631/1297619846061621310/1639.jpg?ex=67173ee7&is=6715ed67&hm=9af993596b6db812b283c993db4376e953f45c315abec2e1711f3d8b303be7ec&=&format=webp&width=503&height=671',
-            'https://media.discordapp.net/attachments/1297065013969817631/1297619844916711486/IMG_20240925_123323_684.webp?ex=67173ee7&is=6715ed67&hm=82e77ee630c6d2df823b05bed042500540ac320d69598e8f10149ef16a761192&=&format=webp&width=377&height=670',
-        ];
+        function showMessage() {
+            const message = document.getElementById("message");
+            const imageContainer = document.getElementById("imageContainer");
+            const text = message.innerHTML;
+            message.innerHTML = "";
+            message.classList.remove("hidden");
+            imageContainer.classList.remove("hidden");
 
-        // ฟังก์ชันเปิดรูปแบบสุ่ม
-        function openRandomImagePopup() {
-            const randomIndex = Math.floor(Math.random() * images.length);
-            const randomImage = images[randomIndex];
-            document.getElementById("popupImage").src = randomImage;
-            document.getElementById("imagePopup").style.display = "flex";
+            let i = 0;
+            const speed = 100; // ความเร็วในการแสดงผล
+
+            function typeWriter() {
+                if (i < text.length) {
+                    message.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, speed);
+                }
+            }
+            typeWriter();
         }
 
-        // ฟังก์ชันปิดการ์ด
-        function closeImagePopup() {
-            document.getElementById("imagePopup").style.display = "none";
-        }
-
-        // เล่นเพลงเมื่อโหลดหน้าเว็บ
-        var audio = document.getElementById('bgMusic');
-        audio.volume = 0.7;
+        // รอ 0.5 วินาทีแล้วค่อยแสดงข้อความและรูปภาพพร้อมกัน
+        setTimeout(showMessage, 500);
     </script>
 
 </body>
-
 </html>
